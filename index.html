@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="/OIG.Ej_ins.jpg">
+<link href="./assets/css/style.css" rel="stylesheet">
+
+
+<style>
+
+
+        *{
+
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* Custom CSS for carousel caption */
+
+        .carousel-caption {
+            background-color: rgba(246, 240, 240, 0.7); /* Adjust the last value (0.7) to control transparency */
+            color: rgb(20, 3, 3); /* Text color */
+            padding-right: 50px; /* Padding for the details */
+            text-align: center; /* Center-align text */
+        }
+        .carousel-item {
+            opacity: 0.7; /* Adjust the opacity value (0.7 for 70% transparency) */
+            transition: opacity 0.5s ease; /* Add a smooth transition effect */
+        }
+
+        /* Restore full opacity on hover (optional) */
+        .carousel-item:hover {
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #FF5733; /* Custom text color */
+            text-align: center;
+        }
+
+        /* Customize the H2 heading for Season 2 */
+        h2 {
+            font-size: 24px;
+            color: #4CAF50; /* Custom text color */
+            text-align: center;
+        }
+
+        /* Customize the paragraph text */
+        p {
+            font-size: 18px;
+            color: white; /* Custom text color */
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Adjust carousel images for responsiveness */
+        .carousel-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .carousel-control-prev,
+        .carousel-control-next {
+            border: 2px solid #FFFFFF; /* Add border to the arrows */
+            border-radius: 50%; /* Make the arrows circular */
+            width: 40px; /* Adjust the width of the arrows */
+            height: 40px; /* Adjust the height of the arrows */
+            background-color: black;
+            position: absolute;
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%)
+            /* Semi-transparent background */
+
+        }
+
+        /* Customize the arrow icons */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            color: #FFFFFF; /* Arrow icon color */
+        }
+
+a{
+    text-decoration: absolutely;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.wrapper{
+    min-height: 100vh;
+    background-color: var(--dark-color);
+}
+.wrapper .container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.search-container{
+    background-color: var(--md-dark-color);
+    height: 180px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.logo{
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--light-dark-color);
+}
+.logo p{
+    font-size: 2rem;
+    color: #f40a0a;
+    font-weight: bold;
+}
+.logo p span{
+    color: var(--yellow-color);
+}
+.search-element{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: left;
+}
+.search-element h3{
+    -ms-flex-item-align: center;
+        align-self: center;
+    margin-right: 1rem;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+
+}
+.search-element .form-control{
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    border: none;
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: none;
+    outline: none;
+    color: var(--light-dark-color);
+    width: 350px;
+}
+.search-list{
+    position: absolute;
+    right: 90;
+    top: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+    z-index: 10;
+}
+.search-list .search-list-item{
+    background-color: var(--light-dark-color);
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--dark-color);
+    width: calc(350px - 8px);
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: background-color 200ms ease;
+    -o-transition: background-color 200ms ease;
+    transition: background-color 200ms ease;
+}
+.search-list .search-list-item:Hover{
+    background-color: #5e05ed;
+}
+.search-list-item{
+
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.search-item-thumbnail img{
+    width: 80px;
+    margin-left: 1rem;
+}
+.search-item-info h3{
+    font-weight: 600;
+    font-size: 1rem;
+}
+.search-item-info p{
+    font-size: 1rem;
+
+    font-weight: 600;
+    opacity: 1;
+}
+
+/* thumbnail */
+.search-list::-webkit-scrollbar{
+    width: 12px;
+}
+.search-list::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.search-list::-webkit-scrollbar-thumb{
+    background-color: var(--yellow-color);
+    outline: none;
+    border-radius: 10px;
+}
+
+/* js related class */
+.hide-search-list{
+    display: none;
+}
+
+/* movie result */
+.result-container{
+    padding: 5rem 0;
+}
+.movie-poster img{
+    max-width: 300px;
+    margin: 1rem 0;
+    border: 4px solid #fff;
+}
+.movie-info{
+    text-align: center;
+    color: #1b0202;
+    padding-top: 3rem;
+}
+
+/* movie info stylings */
+.movie-title{
+    font-size: 2rem;
+    color: var(--yellow-color);
+
+}
+.movie-misc-info{
+    list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: left;
+    padding: 2rem;
+}
+.movie-info .year{
+    font-weight: 500;
+}
+.movie-info .rated{
+    background-color: var(--yellow-color);
+    padding: 0.4rem;
+    margin: 0 0.4rem;
+    border-radius: 3px;
+    font-weight: 600;
+}
+.movie-info .released{
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+.movie-info .writer{
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+.movie-info .genre{
+    background-color: var(--light-dark-color);
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 3px;
+}
+.movie-info .plot{
+    max-width: 400px;
+    margin: 1rem auto;
+}
+.movie-info .language{
+    color: var(--yellow-color);
+    font-style: italic;
+}
+.movie-info .awards{
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+.movie-info .awards i{
+    color: var(--yellow-color);
+    margin: 1rem 0.7rem 0 0;
+}
+
+@media(max-width: 450px){
+    .logo p{
+        font-size: 1.4rem;
+    }
+    .search-element .form-control{
+        width: 90%;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+    }
+    .search-element h3{
+        font-size: 1.4rem;
+    }
+    .search-list{
+        width: 90%;
+        right: 50%;
+        -webkit-transform: translateX(50%);
+            -ms-transform: translateX(50%);
+                transform: translateX(50%);
+    }
+    .search-list .search-list-item{
+        width: 100%;
+        height: auto;
+    }
+    .movie-misc-info{
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    .movie-misc-info li:nth-child(2){
+        margin: 0.8rem 0;
+    }
+}
+
+@media(min-width: 800px){
+    .search-element{
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+    }
+    .search-element h3{
+        margin-bottom: 0;
+    }
+    .result-grid{
+        display: grid hover ;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .movie-info{
+        text-align: left;
+        padding-top: 0;
+    }
+    .movie-info .movie-misc-info{
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        padding-left: 0;
+    }
+    .movie-info .plot{
+        margin-left: 0;
+    }
+    .movie-info .writer{
+        padding-left: 0;
+        margin-left: 0;
+    }
+}
+
+    @media (max-width: 767px) { /* Add styles for screens smaller than 768px (typical mobile devices) */
+        .card-img-top {
+            max-width: 50%; /* Adjust the image width for mobile devices */
+            height: auto;
+        }
+    }
+
+
+        header .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+        .navbar {
+        background-color: rgba(0, 0, 0, 0); /* Change the background color of the navbar here */
+    }
+
+
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+        }
+
+
+
+</style>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">Movie info<span>app</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="movie-search-box" onkeyup="findMovies()" onclick="findMovies()">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+
+
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="wrapper">
+        <!-- logo -->
+        <div class="logo">
+            <div class="container">
+                <p>Drama<span>go.</span></p>
+            </div>
+        </div>
+        <!-- end of logo -->
+        <div class="search-list" id="search-list">
+                </div>
+
+
+
+
+      <section class="upcoming">
+        <div class="container">
+
+          <div class="flex-wrapper">
+
+            <div class="title-wrapper">
+              <p class="section-subtitle">Scroll down to see search results</p>
+
+              <h2 class="h2 section-title">Movies</h2>
+            </div>
+
+            <ul class="filter-list">
+
+              <li>
+                <button class="filter-btn">Movies</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">TV Shows</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">Anime</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="movies-list  has-scrollbar">
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">The Northman</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT137M">137 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.5</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-2.png"
+                      alt="Doctor Strange in the Multiverse of Madness movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">4K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT126M">126 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>NR</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Memory</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="">N/A</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>NR</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/upcoming-4.png"
+                      alt="The Unbearable Weight of Massive Talent movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT107M">107 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>NR</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!--
+        - #SERVICE
+      -->
+
+      <section class="service">
+        <div class="container">
+
+          <div class="service-banner">
+            <figure>
+              <img src="./assets/images/service-banner.jpg" alt="HD 4k resolution! only $3.99">
+            </figure>
+
+            <a href="./assets/images/service-banner.jpg" download class="service-btn">
+              <span>Download</span>
+
+              <ion-icon name="download-outline"></ion-icon>
+            </a>
+          </div>
+
+
+              </li>
+
+              <li>
+                <div class="service-card">
+
+                  <div class="card-icon">
+                    <ion-icon name="Video cam"></ion-icon>
+                  </div>
+
+                  <div class="card-content">
+                    <h3 class="h3 card-title">Watch Everywhere.</h3>
+
+
+                  </div>
+
+                </div>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!--
+        - #TOP RATED
+      -->
+
+      <section class="top-rated">
+        <div class="container">
+
+          <p class="section-subtitle">Online Streaming</p>
+
+          <h2 class="h2 section-title">Top Rated Movies</h2>
+
+          <ul class="filter-list">
+
+            <li>
+              <button class="filter-btn">Movies</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">TV Shows</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Documentary</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Sports</button>
+            </li>
+
+          </ul>
+
+          <ul class="movies-list">
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-1.png" alt="Sonic the Hedgehog 2 movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Sonic the Hedgehog 2</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT122M">122 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.8</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-2.png" alt="Morbius movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Morbius</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT104M">104 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>5.9</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-3.png" alt="The Adam Project movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">The Adam Project</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">4K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT106M">106 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.0</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-4.png" alt="Free Guy movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Free Guy</h3>
+                  </a>
+
+                  <time datetime="2021">2021</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">4K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT115M">115 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.7</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-5.png" alt="The Batman movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">The Batman</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">4K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT176M">176 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.9</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-6.png" alt="Uncharted movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Uncharted</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT116M">116 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.0</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-7.png" alt="Death on the Nile movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Death on the Nile</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT127M">127 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>6.5</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/movie-8.png" alt="The King's Man movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">The King's Man</h3>
+                  </a>
+
+                  <time datetime="2021">2021</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">HD</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT131M">131 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.0</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!--
+        - #TV SERIES
+      -->
+
+      <section class="tv-series">
+        <div class="container">
+
+          <p class="section-subtitle">Best TV Series</p>
+
+          <h2 class="h2 section-title">World Best TV Series</h2>
+
+          <ul class="movies-list">
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Moon Knight</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT47M">47 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.6</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/series-2.png" alt="Halo movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Halo</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT59M">59 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.8</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Vikings: Valhalla</h3>
+                  </a>
+
+                  <time datetime="2022">2022</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">2K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT51M">51 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.3</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="movie-card">
+
+                <a href="./movie-details.html">
+                  <figure class="card-banner">
+                    <img src="./assets/images/series-4.png" alt="Money Heist movie poster">
+                  </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="./movie-details.html">
+                    <h3 class="card-title">Money Heist</h3>
+                  </a>
+
+                  <time datetime="2017">2017</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">4K</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="PT70M">70 min</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>8.3</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+ <div class="container mt-5">
+        <div id="movieDetailsContainer"></div>
+    </div>
+        <!-- result container -->
+        <div class="container">
+            <div class="result-container">
+                <div class="result-grid" id="result-grid">
+                    <!-- movie information here -->
+                </div>
+            </div>
+        </div>
+        <!-- end of result container -->
+    </div>
+
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+
+
+
+    <script src="index.js"></script>
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+<script>
+    // An array of background image URLs
+    const backgroundImages = [
+    'https://t3.ftcdn.net/jpg/03/08/13/12/360_F_308131267_unLRF2JmPsjjXgrMRaFA3aEnrKa9aUxK.jpg',
+    'https://t3.ftcdn.net/jpg/03/08/13/12/360_F_308131267_unLRF2JmPsjjXgrMRaFA3aEnrKa9aUxK.jpg',
+        // Add more image URLs as needed
+    ];
+
+    let currentIndex = 0;
+
+    // Function to change the background image for both body and footer
+    function changeBackgroundImage() {
+        currentIndex = (currentIndex + 1) % backgroundImages.length;
+        const imageUrl = backgroundImages[currentIndex];
+        document.body.style.backgroundImage = `url('${imageUrl}')`;
+        document.querySelector('.footer').style.backgroundImage = `url('${imageUrl}')`;
+    }
+
+    // Call the function to start changing the background image every 2 seconds
+    setInterval(changeBackgroundImage, 4000);
+</script>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Copyright -->
+        <div class="text-center p-3 text-light" style="background-color: rgba(9, 0, 0, 0.997);">
+            © 2024 Copyright:
+            <a class="text-light" href="">movie</a>
+            <p>developed by Ajay</p>
+
+            <a class="text-light" href="">movieinfo</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+</body>
+
+
+</html>
