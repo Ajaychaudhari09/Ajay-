@@ -1,4 +1,3 @@
-
 const movieSearchBox = document.getElementById('movie-search-box');
 const searchList = document.getElementById('search-list');
 const resultGrid = document.getElementById('result-grid');
@@ -8,7 +7,6 @@ async function loadMovies(searchTerm){
     const URL = `https://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=cf423da3`;
     const res = await fetch(`${URL}`);
     const data = await res.json();
-    // console.log(data.Search);
     if(data.Response == "True") displayMovieList(data.Search);
 }
 
@@ -51,12 +49,10 @@ function loadMovieDetails(){
     const searchListMovies = searchList.querySelectorAll('.search-list-item');
     searchListMovies.forEach(movie => {
         movie.addEventListener('click', async () => {
-            // console.log(movie.dataset.id);
             searchList.classList.add('hide-search-list');
             movieSearchBox.value = "";
             const result = await fetch(`https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=cf423da3`);
             const movieDetails = await result.json();
-            // console.log(movieDetails);
             displayMovieDetails(movieDetails);
         });
     });
@@ -84,12 +80,12 @@ function displayMovieDetails(details){
     `;
 }
 
-
 window.addEventListener('click', (event) => {
     if(event.target.className != "form-control"){
         searchList.classList.add('hide-search-list');
     }
 });
+
 document.addEventListener('DOMContentLoaded', function () {
     const movieId = getMovieIdFromURL(); // Get movie ID from URL query parameter
 
@@ -109,27 +105,6 @@ function getMovieIdFromURL() {
 }
 
 async function fetchMovieDetails(movieId) {
-    const response = await fetch(`https://www.omdbapi.com/?t=${movieId}&apikey=cf423da3`);
+    const response = await fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=cf423da3`);
     return await response.json();
-}
-
-function displayMovieDetails(movieDetails) {
-    const movieDetailsContainer = document.getElementById('movieDetailsContainer');
-    movieDetailsContainer.innerHTML = `
-        <div class="row">
-            <div class="col-md-4">
-                <img src="${movieDetails.Poster}" alt="${movieDetails.Title}" class="img-fluid">
-            </div>
-            <div class="col-md-8">
-                <h2>${movieDetails.Title}</h2>
-                <p><strong>Year:</strong> ${movieDetails.Year}</p>
-                <p><strong>Rated:</strong> ${movieDetails.Rated}</p>
-                <p><strong>Released:</strong> ${movieDetails.Released}</p>
-                <p><strong>Genre:</strong> ${movieDetails.Genre}</p>
-                <p><strong>Director:</strong> ${movieDetails.Director}</p>
-                <p><strong>Actors:</strong> ${movieDetails.Actors}</p>
-                <p><strong>Plot:</strong> ${movieDetails.Plot}</p>
-            </div>
-        </div>
-    `;
 }
